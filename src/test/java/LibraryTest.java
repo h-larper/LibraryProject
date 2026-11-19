@@ -8,7 +8,7 @@ public class LibraryTest{
     @Test
     public void borrowBook_availableBookAndValidMember_succeeds(){
         Library library = new Library();
-        Book book = new Book("Fourth Wing", "Rebecca Yarros", "123", true);
+        Book book = new Book("Fourth Wing", "Rebecca Yarros", "123");
         Member member = new Member("Laura", "1");
         library.addBook(book);
         library.addMember(member);
