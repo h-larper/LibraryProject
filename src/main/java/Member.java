@@ -6,9 +6,11 @@ import java.util.List;
  */
 public class Member{
 
+    private static final int MAXIMUM_BOOK_LOANS = 5;
+
     private String name;
     private String memberId;
-    private List<Book> books;
+    private final List<Book> borrowedBooks;
 
     /**
      * Creates a new member with an empty list of borrowed books.
@@ -19,7 +21,7 @@ public class Member{
     public Member(String name, String memberId){
         this.name = name;
         this.memberId = memberId;
-        this.books = new ArrayList<>();
+        this.borrowedBooks = new ArrayList<>();
     }
 
     /**
@@ -39,8 +41,8 @@ public class Member{
     /**
      * @return the list of books currently borrowed by the member
      */
-    public List<Book> getBooks(){
-        return books;
+    public List<Book> getBorrowedBooks(){
+        return new ArrayList<>(borrowedBooks);
     }
 
     /**
@@ -49,7 +51,7 @@ public class Member{
      * @param book the book to add
      */
     public void addBook(Book book){
-        books.add(book);
+        borrowedBooks.add(book);
     }
 
     /**
@@ -58,7 +60,14 @@ public class Member{
      * @param book the book to remove
      */
     public void removeBook(Book book){
-        books.remove(book);
+        borrowedBooks.remove(book);
+    }
+
+    /**
+     * @return a boolean value indicating whether the member can borrow additional books
+     */
+    public boolean canBorrowBook(){
+        return borrowedBooks.size() < MAXIMUM_BOOK_LOANS;
     }
 
 }

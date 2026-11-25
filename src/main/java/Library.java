@@ -74,11 +74,11 @@ public class Library{
         }
 
         // Documents the business rule of a maximum of 5 borrowed books for a member
-        if(selectedMember.getBooks().size() >= 5){
+        if(!selectedMember.canBorrowBook()){
             return "Member has reached the loan limit";
         }
 
-        selectedBook.setAvailable(false);
+        selectedBook.markAsBorrowed();
         selectedMember.addBook(selectedBook);
 
         return "Book successfully borrowed";

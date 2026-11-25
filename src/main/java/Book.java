@@ -16,6 +16,19 @@ public class Book{
      * @param isbn      the book ISBN
      */
     public Book(String title, String author, String isbn){
+
+        if(title == null || title.isEmpty()){
+            throw new IllegalArgumentException("Title must not be blank.");
+        }
+
+        if(author == null || author.isEmpty()){
+            throw new IllegalArgumentException("Author must not be blank.");
+        }
+
+        if(isbn == null || isbn.isEmpty()){
+            throw new IllegalArgumentException("ISBN must not be blank.");
+        }
+
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -59,11 +72,16 @@ public class Book{
     }
 
     /**
-     * Sets whether the book is available to borrow.
-     *
-     * @param available {@code true} if the book is available, otherwise {@code false}
+     * Marks the book as borrowed and therefore unavailable for loan.
      */
-    public void setAvailable(boolean available){
-        this.available = available;
+    public void markAsBorrowed(){
+        this.available = false;
+    }
+
+    /**
+     * Marks the book as returned and therefore available for loan.
+     */
+    public void markAsReturned(){
+        this.available = true;
     }
 }
